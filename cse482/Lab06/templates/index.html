@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookstore</title>
+</head>
+<body>
+    <h1>Welcome to Bookworm's hangout!</h1>
+    <form action="/add" method="POST">
+        <input type="text" name="title" placeholder="Title" required>
+        <input type="text" name="author" placeholder="Author" required>
+
+        <!-- Genre as a select option -->
+        <label for="genre">Genre:</label>
+        <select name="genre" id="genre" required>
+            <option value="Fantasy">Fantasy</option>
+            <option value="Science fiction">Science fiction</option>
+            <option value="Mystery">Mystery</option>
+            <option value="Horror">Horror</option>
+            <option value="Romance">Romance</option>
+            <option value="Historical fiction">Historical fiction</option>
+            <option value="Biography">Biography</option>
+            <option value="History">History</option>
+            <option value="Self-help">Self-help</option>
+            <option value="Travel">Travel</option>
+            <option value="Cookbook">Cookbook</option>
+        </select>
+        <!-- Publish Year as a year input -->
+        <label for="publish_year">Publish Year:</label>
+        <input type="number" name="publish_year" id="publish_year" min="1900" max="2100" required>
+
+        <button type="submit">Add Book</button>
+    </form>
+    <ul>
+        {% for book in books %}
+            <li>
+                {{ book.title }} by {{ book.author }} ({{ book.genre }})
+                <a href="/edit/{{ book.id }}">Edit</a>
+                <a href="/delete/{{ book.id }}">Delete</a>
+            </li>
+        {%endfor %}
+
+
+        <script>
+            // Set the default value of the publish_year input to the current year
+            window.onload = function() {
+                const currentYear = new Date().getFullYear();
+                document.getElementById('publish_year').value = currentYear;
+            };
+        </script>
+
+    </body>
+    </html>
