@@ -1,19 +1,13 @@
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bookstore</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block content %}
     <h1>Welcome to Bookworm's hangout!</h1>
     <form action="/add" method="POST">
-        <input type="text" name="title" placeholder="Title" required>
-        <input type="text" name="author" placeholder="Author" required>
+        <input type="text" name="title" placeholder="Title" required><br>
+        <input type="text" name="author" placeholder="Author" required><br>
 
         <!-- Genre as a select option -->
-        <label for="genre">Genre:</label>
+        <label for="genre">Genre:</label><br>
         <select name="genre" id="genre" required>
             <option value="Fantasy">Fantasy</option>
             <option value="Science fiction">Science fiction</option>
@@ -26,12 +20,12 @@
             <option value="Self-help">Self-help</option>
             <option value="Travel">Travel</option>
             <option value="Cookbook">Cookbook</option>
-        </select>
+        </select><br>
         <!-- Publish Year as a year input -->
         <label for="publish_year">Publish Year:</label>
-        <input type="number" name="publish_year" id="publish_year" min="1900" max="2100" required>
+        <input type="number" name="publish_year" id="publish_year" min="1900" max="2100" required> <br>
 
-        <button type="submit">Add Book</button>
+        <button type="submit">Add Book</button><br>
     </form>
     <ul>
         {% for book in books %}
@@ -51,5 +45,4 @@
             };
         </script>
 
-    </body>
-    </html>
+{% endblock %}
